@@ -1,183 +1,280 @@
-.bienvenida{
-    background-color: #1B2E15;
-    height: 5rem;
-}
-.textoBienvenida{
-    color: white;
-    text-align: center;
-    font-family: "Share Tech Mono", monospace;
-    padding-top: 20px
-}
-.selectorMoneda{
-    height: 360px;
-    background-color:#E1EEED;
-}
-.filaSelector{
-    width: 100%;
+:root {
+  --verde: #1b2e15;
+  --fondo: #e1eeed;
+  --azul: #264f73;
+  --teal: #12778e;
+  --texto: #163840;
+  --error: #b00020;
 }
 
-.monedaElegida{
-    margin-left: 75%;
-    margin-top: 8%;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 60px;
-    background-color: #264F73;
+html {
+  -webkit-text-size-adjust: 100%;
 }
-.botonCambiar{
-    font-family: "Share Tech Mono", monospace;
-    margin-top: 9%;
-    font-size: 2.5rem;
+
+body {
+  margin: 0;
+  color: var(--texto);
+  background: #f7fbfa;
+  font-family: "Quicksand", system-ui, sans-serif;
 }
+
+.bienvenida {
+  background-color: var(--verde);
+  padding: 1.1rem 1rem;
+}
+
+.textoBienvenida {
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  font-family: "Share Tech Mono", monospace;
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  letter-spacing: 0.02em;
+}
+
+.selectorMoneda {
+  background-color: var(--fondo);
+  padding: 2rem 1rem 1.25rem;
+}
+
+.contenedorSelector {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.filaSelector {
+  row-gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.moneda {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 select {
-    font-family: "Quicksand", sans-serif;
-    margin-left: 40%;
-    margin-top: 10%;
-    width: 500px;
-    font-size: 2.5rem;
+  width: 100%;
+  max-width: 440px;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid #7fa6a3;
+  border-radius: 0.6rem;
+  background-color: #fff;
+  color: var(--texto);
+  font-family: "Quicksand", sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+}
+
+select:disabled {
+  opacity: 0.65;
+  cursor: wait;
 }
 
 option {
-    font-family: "Quicksand", sans-serif;
-    font-size: 1.4rem;
-    color: #333;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 5px;
+  color: #333;
+  background-color: #fff;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1rem;
 }
-.textoInformativo{
-    font-family: "Anta", sans-serif;
-    text-align: center;
-    margin: 40px;
-    font-size: 3.5rem;
-    margin-top: 10%;
-    margin-left: 20%;
-}
-.iconoCasa{
-    margin-left: 10%;
-    text-align: center;
-    font-size: 20rem;
-    color: #274259;
-}
-.oculto{
-    display: none;
-}
-.espacioMonedas{
-    background-color:#E1EEED;
-}
-.elementoMoneda{
-    justify-content: center;
-    align-items: center;
-    width:180px;    
-    height: 80px;
-    text-align: center;
-    background-color: #12778E;
-    color: #EEF5F6;
-    font-weight: bold;
-    margin: 5px;
-    margin-left: 51px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-.elementoMoneda:hover {
-    background-color: #85F2A0;
-    color: #163840;
-}
-.textoCantidad{
-    font-family: "Share Tech Mono", monospace;
-    font-size: 2.2rem; 
-    text-align: center;
-    margin-left: 169px;
-}
-.numeroCalcular{
-    font-family: "Share Tech Mono", monospace;
-    font-size: 2.2rem; 
-    text-align: center;
-    margin-top: 10px;
-    width: 120px;
-    height: 90px;
-}
-@media screen and (max-width:500px) {
-    select{
-        margin-left: 2%;
-        width: 349px;
-        font-size: 1.5rem;
-    }
-    option{
-        font-size: 0.9rem;
 
-    }
-    .botonCambiar{
-        font-size: 1.5rem;
-        margin-left: 20%;
-        text-align: center;
-    }
-    .textoCantidad{
-        font-size: 1.5rem;
-        margin-left: 11px;
-    }
-    .numeroCalcular{
-        margin-left: 35%;
-        margin-top: 0px;
-    }
-    .textoInformativo{
-        font-size: 1.5rem;
-    }
-    .iconoCasa{
-        font-size: 10rem;
-        margin-left: 35%;
-    }
-    .elementoMoneda{
-        width: 164px;
-        height: 60px;
-        font-size: 0.9rem;
-        margin-left: 34px;
-    }
+.botonCambiar {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.65rem 1rem;
+  border-color: var(--azul);
+  background-color: var(--azul);
+  font-family: "Share Tech Mono", monospace;
+  font-size: clamp(1.05rem, 2.4vw, 1.5rem);
 }
-/* Estado de la API y ajustes responsive */
+
+.botonCambiar:hover:not(:disabled) {
+  border-color: #1c3d59;
+  background-color: #1c3d59;
+}
+
+.botonCambiar:disabled {
+  border-color: #6c8194;
+  background-color: #6c8194;
+}
+
+.textoCantidad {
+  display: block;
+  margin: 0;
+  font-family: "Share Tech Mono", monospace;
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  text-align: center;
+}
+
+.boton-inicio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.numeroCalcular {
+  display: block;
+  width: min(180px, 100%);
+  height: 64px;
+  padding: 0.5rem;
+  border: 1px solid #7fa6a3;
+  border-radius: 0.6rem;
+  background-color: #fff;
+  color: var(--texto);
+  font-family: "Share Tech Mono", monospace;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.numeroCalcular:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.filaEstado {
+  text-align: center;
+}
+
 .estado-api {
   min-height: 1.4rem;
-  margin: 0.5rem 0 0 40%;
+  margin: 0.25rem auto 0;
+  color: var(--azul);
   font-family: "Quicksand", sans-serif;
   font-size: 0.95rem;
-  color: #264F73;
 }
 
 .estado-api[data-error="true"] {
-  color: #b00020;
+  color: var(--error);
+  font-weight: 600;
 }
 
-@media (max-width: 768px) {
+.reintentar {
+  margin-top: 0.5rem;
+}
+
+.oculto {
+  display: none !important;
+}
+
+.informacionPagina {
+  padding: 2.5rem 1rem;
+}
+
+.informacionPagina .row {
+  max-width: 1100px;
+  margin: 0 auto;
+  row-gap: 1rem;
+}
+
+.textoInformativo {
+  margin: 0;
+  font-family: "Anta", sans-serif;
+  font-size: clamp(1.35rem, 3vw, 2.2rem);
+  text-align: center;
+}
+
+.iconoCasa {
+  display: block;
+  color: #274259;
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  line-height: 1;
+  text-align: center;
+}
+
+.espacioMonedas {
+  min-height: 6rem;
+  padding: 1.25rem 1rem 2rem;
+  background-color: var(--fondo);
+}
+
+.filaMonedas {
+  max-width: 1240px;
+  margin: 0 auto;
+  row-gap: 0.85rem;
+}
+
+.filaMonedas:empty::after {
+  content: "Elige una moneda y una cantidad para ver las conversiones.";
+  flex: 0 0 100%;
+  padding: 1rem;
+  color: #4c6a74;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.elementoMoneda {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 76px;
+  padding: 0.7rem 0.6rem;
+  border-radius: 0.55rem;
+  background-color: var(--teal);
+  color: #eef5f6;
+  font-size: clamp(0.78rem, 1.4vw, 0.95rem);
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  overflow-wrap: anywhere;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.elementoMoneda:hover {
+  background-color: #85f2a0;
+  color: #163840;
+}
+
+:focus-visible {
+  outline: 3px solid #85f2a0;
+  outline-offset: 2px;
+}
+
+@media (max-width: 767.98px) {
   .selectorMoneda {
-    height: auto;
-    padding-bottom: 1rem;
+    padding: 1.25rem 1rem 1rem;
   }
 
-  select {
-    width: 100%;
-    margin: 0.5rem 0 0;
-    font-size: 1.1rem;
+  .filaSelector {
+    margin-bottom: 0.5rem;
   }
 
   .botonCambiar {
-    margin-top: 0.75rem;
-    font-size: 1.4rem;
+    max-width: none;
   }
 
   .estado-api {
-    margin-left: 0;
-    padding: 0 1rem;
+    padding: 0 0.25rem;
+    font-size: 0.9rem;
   }
 
-  .textoInformativo {
-    margin: 1rem;
-    font-size: 1.6rem;
+  .informacionPagina {
+    padding: 1.5rem 1rem;
   }
 
-  .iconoCasa {
-    display: block;
-    margin: 0 auto;
-    font-size: 6rem;
+  .espacioMonedas {
+    padding: 1rem 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 359.98px) {
+  .textoBienvenida {
+    font-size: 1.3rem;
+  }
+
+  .botonCambiar {
+    font-size: 1rem;
+  }
+
+  .numeroCalcular {
+    height: 56px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .elementoMoneda {
+    transition: none;
   }
 }

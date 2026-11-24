@@ -1,25 +1,32 @@
 {
   "name": "casa-cambio-boot",
-  "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
+  "version": "1.1.0",
+  "description": "Conversor de divisas con jQuery, Bootstrap y la API pública open.er-api.com",
+  "private": true,
   "scripts": {
-    "empezar": "http-server",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint .  --ext .js",
-    "lint-fix": "eslint . --ext .js --fix"
+    "empezar": "node e2e/server.mjs --port 8080",
+    "test": "npm run test:e2e",
+    "test:e2e": "playwright test --config=playwright.config.mjs",
+    "test:e2e:live": "playwright test --config=playwright.live.config.mjs",
+    "lint": "eslint . --ext .js",
+    "lint-fix": "eslint . --ext .js --fix",
+    "docs:preview": "node scripts/capture-preview.mjs"
   },
+  "keywords": [
+    "jquery",
+    "bootstrap",
+    "currency-converter",
+    "github-pages",
+    "playwright"
+  ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
-    "@types/jquery": "^3.5.29",
+    "@playwright/test": "^1.65.1",
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.1.1"
-  },
-  "dependencies": {
-    "jquery": "^3.7.1"
   }
 }
