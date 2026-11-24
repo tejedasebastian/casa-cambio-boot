@@ -135,3 +135,49 @@ option {
         margin-left: 34px;
     }
 }
+/* Estado de la API y ajustes responsive */
+.estado-api {
+  min-height: 1.4rem;
+  margin: 0.5rem 0 0 40%;
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.95rem;
+  color: #264F73;
+}
+
+.estado-api[data-error="true"] {
+  color: #b00020;
+}
+
+@media (max-width: 768px) {
+  .selectorMoneda {
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  select {
+    width: 100%;
+    margin: 0.5rem 0 0;
+    font-size: 1.1rem;
+  }
+
+  .botonCambiar {
+    margin-top: 0.75rem;
+    font-size: 1.4rem;
+  }
+
+  .estado-api {
+    margin-left: 0;
+    padding: 0 1rem;
+  }
+
+  .textoInformativo {
+    margin: 1rem;
+    font-size: 1.6rem;
+  }
+
+  .iconoCasa {
+    display: block;
+    margin: 0 auto;
+    font-size: 6rem;
+  }
+}
