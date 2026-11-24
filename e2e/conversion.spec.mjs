@@ -9,6 +9,18 @@ const RATES = Object.freeze({
   GBP: 0.79
 })
 
+const RATES_POR_BASE = Object.freeze({
+  USD: RATES,
+  PEN: Object.freeze({
+    PEN: 1,
+    USD: 0.2893,
+    EUR: 0.2662,
+    MXN: 4.933,
+    JPY: 43.25,
+    GBP: 0.2286
+  })
+})
+
 const API_URL = /^https:\/\/open\.er-api\.com\/v6\/latest\/[A-Z]{3}$/
 const formateador = new Intl.NumberFormat('es-PE', {
   minimumFractionDigits: 2,
@@ -19,7 +31,7 @@ function payload (base) {
   return {
     result: 'success',
     base_code: base,
-    rates: RATES
+    rates: RATES_POR_BASE[base] || RATES
   }
 }
 
@@ -39,6 +51,7 @@ async function mockApi (page) {
   const mock = {
     total: 0,
     conversionRequests: 0,
+    lastBase: null,
     initialDone: false,
     failInitial: false,
     failConversions: false,
@@ -64,6 +77,7 @@ async function mockApi (page) {
     }
 
     mock.conversionRequests += 1
+    mock.lastBase = base
     if (mock.failConversions) {
       await route.fulfill({
         status: 500,
@@ -110,6 +124,22 @@ test.describe('conversión con API simulada', () => {
     await expect(filaUsd).toContainText(formateador.format(100))
 
     expect(mock.conversionRequests).toBe(1)
+  })
+
+  test('convierte desde PEN usando /latest/PEN', async ({ page }) => {
+    const mock = await mockApi(page)
+    await abrirApp(page)
+
+    await page.selectOption('#selectMoneda', 'PEN')
+    await page.fill('#numeroCalcular', '10')
+    await page.click('#botonCambiar')
+
+    await expect(page.locator('#estadoApi')).toHaveText('Conversión actualizada desde PEN.')
+    await expect(page.locator('.elementoMoneda')).toHaveCount(Object.keys(RATES_POR_BASE.PEN).length)
+
+    const filaUsd = page.locator('.elementoMoneda').filter({ hasText: '(USD)' })
+    await expect(filaUsd).toContainText(formateador.format(RATES_POR_BASE.PEN.USD * 10))
+    expect(mock.lastBase).toBe('PEN')
   })
 
   test('cantidad 0 o vacía muestra error y no consulta la API', async ({ page }) => {

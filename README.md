@@ -83,6 +83,7 @@ npm run test:e2e
 Cobertura:
 
 - carga de monedas y conversión USD 100 con filas y estado final;
+- conversión desde PEN (endpoint `/latest/PEN`);
 - cantidad 0 o vacía: error visible y cero requests de conversión;
 - respuesta 500: error visible y botón reactivado;
 - API lenta: estado “Convirtiendo…”, controles bloqueados y recuperación;
